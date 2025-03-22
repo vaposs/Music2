@@ -40,28 +40,25 @@ public class ChangeMusicVolume : MonoBehaviour
         _fonMusicSlider.value = _minValueSlider;
         _effectMusicSlider.value = _minValueSlider;
 
-        _audioMixer.SetFloat("Sound_1", _effectMusicSlider.value);
-        _audioMixer.SetFloat("Sound_2", _effectMusicSlider.value);
-        _audioMixer.SetFloat("Sound_3", _effectMusicSlider.value);
+        _audioMixer.SetFloat("Sound_1", Mathf.Log10(_effectMusicSlider.value) * _modifierMepevodDicebels);
+        _audioMixer.SetFloat("Sound_2", Mathf.Log10(_effectMusicSlider.value) * _modifierMepevodDicebels);
+        _audioMixer.SetFloat("Sound_3", Mathf.Log10(_effectMusicSlider.value) * _modifierMepevodDicebels);
         _audioMixer.SetFloat("FonSound", Mathf.Log10(_fonMusicSlider.value) * _modifierMepevodDicebels);
         _audioMixer.SetFloat("Master", Mathf.Log10(_allMusicSlider.value) * _modifierMepevodDicebels);
     }
 
     public void PlayMusicOne()
     {
-        _audioMixer.SetFloat("Sound_1", _effectMusicSlider.value);
         _audioSourseOne.Play();
     }
 
     public void PlayMusicTwo()
     {
-        _audioMixer.SetFloat("Sound_2", _effectMusicSlider.value);
         _audioSourseTwo.Play();
     }
 
     public void PlayMusicThree()
     {
-        _audioMixer.SetFloat("Sound_3", _effectMusicSlider.value);
         _audioSourseThree.Play();
     }
 
@@ -85,7 +82,7 @@ public class ChangeMusicVolume : MonoBehaviour
 
     public void MuteMusic()
     {
-        if(_muteAllSound.isOn == true)
+        if(_muteAllSound.isOn == false)
         {
             _audioSourseOne.mute = true;
             _audioSourseTwo.mute = true;
