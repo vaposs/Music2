@@ -1,4 +1,5 @@
-using UnityEditor.Tilemaps;
+
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -15,18 +16,31 @@ public class SliderVolumeChange : MonoBehaviour
     private float _maxValueSlider = 1f;
     private int _modifierMepevodDicebels = 20;
 
-    private void Start()
+    private void Awake()
     {
         _slider = GetComponent<Slider>();
+    }
 
+    private void Start()
+    {
         _slider.minValue = _minValueSlider;
         _slider.maxValue = _maxValueSlider;
         _slider.value = _minValueSlider;
 
-        ChangeCountVolume();
+        ChangeCountVolume(_minValueSlider);
     }
 
-    public void ChangeCountVolume()
+    private void OnEnable()
+    {
+        _slider.onValueChanged.AddListener(ChangeCountVolume);
+    }
+
+    private void OnDisable()
+    {
+        _slider.onValueChanged.RemoveListener(ChangeCountVolume);
+    }
+
+    private void ChangeCountVolume(float stub)  // заглушка, если не правельно подскажите как исправить, решения не нашел
     {
         foreach (string nameSourse in _nameGroupSourses)
         {

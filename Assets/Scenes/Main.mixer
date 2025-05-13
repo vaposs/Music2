@@ -54,11 +54,11 @@ AudioMixerController:
   - guid: ebb297a104e9748b1bed350c574cb52e
     name: Master
   - guid: 4a62bb0e5f7314ce6b4337fa70b69995
-    name: Sound_3
+    name: Sound_1
   - guid: 102f919902bb04c098a77cf3f4ac4b49
     name: Sound_2
   - guid: 74a036268ef4340bb9ae5876c2356a46
-    name: Sound_1
+    name: Sound_3
   m_AudioMixerGroupViews:
   - guids:
     - b9adad4e534cd486cbbd54011db65657
@@ -118,6 +118,7 @@ AudioMixerSnapshotController:
   m_FloatValues:
     ad2fc00452fa64a13bb177a4a5e958fd: 0.13552584
     102f919902bb04c098a77cf3f4ac4b49: 0.04171297
+    4a62bb0e5f7314ce6b4337fa70b69995: 0.04171297
   m_TransitionOverrides: {}
 --- !u!243 &2318187700668732614
 AudioMixerGroupController:

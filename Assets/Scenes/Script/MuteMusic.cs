@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -8,25 +10,37 @@ using UnityEngine.UI;
 
 public class MuteMusic : MonoBehaviour
 {
-    [SerializeField] private AudioSource[] _audioSources;
+    [SerializeField] private AudioMixer _audioMixer;
+    [SerializeField] private Toggle _muteAllSound;
+    [SerializeField] private Slider _slider;
 
-    private Toggle _muteAllSound;
+    private int _modifierMepevodDicebels = 20;
+    private float _offMusicValue = -80;
 
-    private void Start()
+    private void Awake()
     {
         _muteAllSound = GetComponent<Toggle>();
     }
 
-    public void Mute()
+    private void OnEnable()
     {
-        OffOnMusic(_muteAllSound.isOn);
+        _muteAllSound.onValueChanged.AddListener(OffOnMusic);
+    }
+
+    private void OnDisable()
+    {
+        _muteAllSound.onValueChanged.RemoveListener(OffOnMusic);
     }
 
     private void OffOnMusic(bool state)
     {
-        foreach (AudioSource audioSource in _audioSources)
+        if(state)
         {
-            audioSource.mute = state;
+            _audioMixer.SetFloat("Master", _offMusicValue);
+        }
+        else
+        {
+            _audioMixer.SetFloat("Master", Mathf.Log10(_slider.value) * _modifierMepevodDicebels);
         }
     }
 }
