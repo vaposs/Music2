@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Toggle))]
 
-public class MuteMusic : MonoBehaviour
+public class MusicMute : MonoBehaviour
 {
     [SerializeField] private AudioMixer _audioMixer;
     [SerializeField] private Toggle _muteAllSound;
@@ -16,6 +16,7 @@ public class MuteMusic : MonoBehaviour
 
     private int _modifierMepevodDicebels = 20;
     private float _offMusicValue = -80;
+    private string _nameMixerGroup = "Master";
 
     private void Awake()
     {
@@ -36,11 +37,11 @@ public class MuteMusic : MonoBehaviour
     {
         if(state)
         {
-            _audioMixer.SetFloat("Master", _offMusicValue);
+            _audioMixer.SetFloat(_nameMixerGroup, _offMusicValue);
         }
         else
         {
-            _audioMixer.SetFloat("Master", Mathf.Log10(_slider.value) * _modifierMepevodDicebels);
+            _audioMixer.SetFloat(_nameMixerGroup, Mathf.Log10(_slider.value) * _modifierMepevodDicebels);
         }
     }
 }

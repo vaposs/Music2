@@ -9,12 +9,13 @@ using UnityEngine.UI;
 public class SliderVolumeChange : MonoBehaviour
 {
     [SerializeField] private AudioMixer _audioMixer;
-    [SerializeField] private string[] _nameGroupSourses;
+    [SerializeField] private string _nameMixerGroup;
 
     private Slider _slider;
     private float _minValueSlider = 0.0001f;
     private float _maxValueSlider = 1f;
     private int _modifierMepevodDicebels = 20;
+    private float _minValueMixer = -80f;
 
     private void Awake()
     {
@@ -40,11 +41,13 @@ public class SliderVolumeChange : MonoBehaviour
         _slider.onValueChanged.RemoveListener(ChangeCountVolume);
     }
 
-    private void ChangeCountVolume(float stub)  // заглушка, если не правельно подскажите как исправить, решения не нашел
+    private void ChangeCountVolume(float stub)
     {
-        foreach (string nameSourse in _nameGroupSourses)
+        _audioMixer.SetFloat(_nameMixerGroup, Mathf.Log10(_slider.value) * _modifierMepevodDicebels);
+
+        if (_slider.value == _slider.minValue)
         {
-            _audioMixer.SetFloat(nameSourse, Mathf.Log10(_slider.value) * _modifierMepevodDicebels);
+            _audioMixer.SetFloat(_nameMixerGroup, _minValueMixer);
         }
     }
 }

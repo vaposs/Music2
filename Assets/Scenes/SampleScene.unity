@@ -645,10 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: d9f25801013244b4887aa50f7e30df1d, type: 2}
-  _nameGroupSourses:
-  - Sound_1
-  - Sound_2
-  - Sound_3
+  _nameMixerGroup: Efects
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2657,8 +2654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: d9f25801013244b4887aa50f7e30df1d, type: 2}
-  _nameGroupSourses:
-  - FonSound
+  _nameMixerGroup: FonSound
 --- !u!1 &1819868596
 GameObject:
   m_ObjectHideFlags: 0
@@ -3277,8 +3273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: d9f25801013244b4887aa50f7e30df1d, type: 2}
-  _nameGroupSourses:
-  - Master
+  _nameMixerGroup: Master
 --- !u!1 &2139912258
 GameObject:
   m_ObjectHideFlags: 0
